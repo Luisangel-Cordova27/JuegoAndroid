@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgy5bw3ebqkom"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0t3es"]
+[ext_resource type="Texture2D" uid="uid://4vvbniylxitj" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 01.png" id="1_f01e5"]
+[ext_resource type="Texture2D" uid="uid://batr8wphp6ym0" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 02.png" id="2_v0x73"]
+[ext_resource type="Texture2D" uid="uid://b6qmxnq50hb3c" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 03.png" id="3_2oqn4"]
+[ext_resource type="Texture2D" uid="uid://0uehhg7k3jxd" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 04.png" id="4_vqumn"]
+[ext_resource type="Texture2D" uid="uid://dwwddffqc4mqn" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 05.png" id="5_5qlca"]
+[ext_resource type="Texture2D" uid="uid://4oeo3qesspl6" path="res://Treasure Hunters/Captain Clown Nose/Sprites/Captain Clown Nose/Captain Clown Nose without Sword/02-Run/Run 06.png" id="6_e6g8e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lpee0"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f01e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v0x73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2oqn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vqumn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5qlca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e6g8e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_so2ui"]
+height = 22.0
+
+[node name="Player" type="Area2D"]
+script = ExtResource("1_0t3es")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lpee0")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_so2ui")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://d268lllx63ngt"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_iiech"]
+[ext_resource type="Texture2D" uid="uid://drom2u6n4xwrp" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 01.png" id="1_vuno6"]
+[ext_resource type="Texture2D" uid="uid://dtcrixypir6eo" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 02.png" id="2_e3m0e"]
+[ext_resource type="Texture2D" uid="uid://rgy6ac7eqpsi" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 03.png" id="3_byo31"]
+[ext_resource type="Texture2D" uid="uid://va7lk3glxwpr" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 04.png" id="4_wdo8n"]
+[ext_resource type="Texture2D" uid="uid://c2od1q1vea5vt" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 05.png" id="5_h6sen"]
+[ext_resource type="Texture2D" uid="uid://ps0ks5qen5cw" path="res://Treasure Hunters/The Crusty Crew/Sprites/Crabby/02-Run/Run 06.png" id="6_s8bhx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bb4d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vuno6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e3m0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_byo31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wdo8n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h6sen")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s8bhx")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5u5pe"]
+height = 20.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_iiech")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_7bb4d")
+animation = &"fly"
+frame = 2
+frame_progress = 0.347669
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_5u5pe")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
